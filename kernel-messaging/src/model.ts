@@ -40,6 +40,7 @@ export class KernelModel {
   }
 
   execute(code: string): void {
+    console.log('this', this);
     if (!this._sessionContext || !this._sessionContext.session?.kernel) {
       return;
     }
@@ -50,12 +51,13 @@ export class KernelModel {
 
   private _onIOPub = (msg: KernelMessage.IIOPubMessage): void => {
     const msgType = msg.header.msg_type;
+    // console.log('msg', msg);
     switch (msgType) {
       case 'execute_result':
       case 'display_data':
       case 'update_display_data':
         this._output = msg.content as IOutput;
-        console.log(this._output);
+        console.log('output', this._output);
         this._stateChanged.emit();
         break;
       default:

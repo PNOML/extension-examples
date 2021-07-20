@@ -20,6 +20,8 @@ import { KernelView } from './widget';
 
 import { KernelModel } from './model';
 
+import { kernelIcon } from '@jupyterlab/ui-components';
+
 /**
  * The class name added to the panels.
  */
@@ -35,8 +37,9 @@ export class ExamplePanel extends StackedPanel {
     this._trans = this._translator.load('jupyterlab');
     this.addClass(PANEL_CLASS);
     this.id = 'kernel-messaging-panel';
-    this.title.label = this._trans.__('Kernel Messaging Example View');
+    this.title.label = this._trans.__('Kernel work');
     this.title.closable = true;
+    this.title.icon = kernelIcon;
 
     this._sessionContext = new SessionContext({
       sessionManager: manager.sessions,

@@ -1,8 +1,12 @@
-import { ReactWidget, UseSignal } from '@jupyterlab/apputils';
+import { ReactWidget } from '@jupyterlab/apputils';
 
-import * as React from 'react';
+import React from 'react';
+// import Canvas from './canvas';
+
+import 'semantic-ui-css/semantic.min.css';
 
 import { KernelModel } from './model';
+import { KernelInteract } from './KernelInteract';
 
 export class KernelView extends ReactWidget {
   constructor(model: KernelModel) {
@@ -10,24 +14,13 @@ export class KernelView extends ReactWidget {
     this._model = model;
   }
 
-  protected render(): React.ReactElement<any> {
+  protected render(): JSX.Element {
     return (
-      <React.Fragment>
-        <button
-          key="header-thread"
-          className="jp-example-button"
-          onClick={(): void => {
-            this._model.execute('3+5');
-          }}
-        >
-          Compute 3+5
-        </button>
-        <UseSignal signal={this._model.stateChanged}>
-          {(): JSX.Element => (
-            <span key="output field">{JSON.stringify(this._model.output)}</span>
-          )}
-        </UseSignal>
-      </React.Fragment>
+      <div>
+        <KernelInteract model={this._model} />
+
+        {/*<Canvas />*/}
+      </div>
     );
   }
 

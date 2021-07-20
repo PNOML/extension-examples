@@ -13,6 +13,8 @@ import { ITranslator } from '@jupyterlab/translation';
 
 import { Menu } from '@lumino/widgets';
 
+import { kernelIcon } from '@jupyterlab/ui-components';
+
 import { ExamplePanel } from './panel';
 
 /**
@@ -82,6 +84,7 @@ function activate(
   commands.addCommand(CommandIDs.create, {
     label: trans.__('Open the Kernel Messaging Panel'),
     caption: trans.__('Open the Kernel Messaging Panel'),
+    icon: kernelIcon,
     execute: createPanel
   });
 
